@@ -19,6 +19,12 @@ use_node_20() {
       export PATH="$(dirname "$node20"):$PATH"
     fi
   fi
+  # nvm's Node 20 does not ship yarn, and the base shell does not reliably
+  # expose a yarn on PATH once Node 20 is prepended, so ensure the classic
+  # yarn the repo uses (see package.json "packageManager") is installed.
+  if ! command -v yarn >/dev/null 2>&1; then
+    npm install -g yarn@1.22.22 >/dev/null 2>&1 || true
+  fi
   echo "Using node $(node -v) / yarn $(yarn -v)"
 }
 
