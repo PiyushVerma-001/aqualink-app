@@ -25,6 +25,7 @@ import Buoy from 'routes/Buoy';
 import Drones from 'routes/Drones';
 import Faq from 'routes/Faq';
 import Dashboard from 'routes/Dashboard';
+import FinanceLab from 'routes/FinanceLab';
 import Spotter from 'routes/Spotter';
 import Tracker from 'routes/Tracker';
 import app from '../../firebase';
@@ -82,6 +83,7 @@ function App() {
                   <Route path="/sites/*" element={<SiteRoutes />} />
                   <Route path="/uploads" element={<Uploads />} />
                   <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/finance-lab" element={<FinanceLab />} />
                   <Route path="/spotter" element={<Spotter />} />
                   <Route path="/tracker" element={<Tracker />} />
                   <Route
