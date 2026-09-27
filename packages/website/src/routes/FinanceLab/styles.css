@@ -19,7 +19,11 @@
 .finance-terminal {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 22% 0%, rgba(255, 159, 28, 0.045), transparent 23rem),
+    radial-gradient(
+      circle at 22% 0%,
+      rgba(255, 159, 28, 0.045),
+      transparent 23rem
+    ),
     var(--terminal-bg);
   color: var(--text);
   font-family: 'IBM Plex Mono', monospace;
@@ -196,7 +200,9 @@ kbd {
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 .command-bar nav {
@@ -361,7 +367,9 @@ kbd {
 
 .terminal-panel {
   min-width: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.012), transparent 45%), var(--panel-bg);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.012), transparent 45%),
+    var(--panel-bg);
   border: 1px solid var(--line);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
 }
@@ -537,8 +545,12 @@ kbd {
   height: 100%;
 }
 
-.bar-track .up { background: var(--green); }
-.bar-track .down { background: var(--red); }
+.bar-track .up {
+  background: var(--green);
+}
+.bar-track .down {
+  background: var(--red);
+}
 
 .watchlist-panel,
 .fundamentals-panel,
@@ -846,8 +858,12 @@ kbd {
   font-weight: 500;
 }
 
-.positive { color: var(--green) !important; }
-.negative { color: var(--red) !important; }
+.positive {
+  color: var(--green) !important;
+}
+.negative {
+  color: var(--red) !important;
+}
 
 .search-overlay {
   position: fixed;

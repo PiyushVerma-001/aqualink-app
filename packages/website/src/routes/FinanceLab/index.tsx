@@ -69,7 +69,8 @@ const news = [
   {
     time: '12:36',
     tag: 'FX',
-    headline: 'Rupee steadies near 83.70 as portfolio inflows offset oil demand',
+    headline:
+      'Rupee steadies near 83.70 as portfolio inflows offset oil demand',
   },
   {
     time: '11:08',
@@ -102,9 +103,18 @@ const funds = [
   ['HDFC Short Term Debt', 'Debt', '+7.6%', '+420', '2.1y'],
 ];
 
-function Sparkline({ values, positive }: { values: number[]; positive: boolean }) {
+function Sparkline({
+  values,
+  positive,
+}: {
+  values: number[];
+  positive: boolean;
+}) {
   const points = values
-    .map((value, index) => `${(index / (values.length - 1)) * 82},${38 - value * 0.38}`)
+    .map(
+      (value, index) =>
+        `${(index / (values.length - 1)) * 82},${38 - value * 0.38}`,
+    )
     .join(' ');
 
   return (
@@ -250,7 +260,9 @@ function FinanceLab() {
           <button type="button" onClick={() => setSearchOpen(true)}>
             SEARCH <kbd>⌘ K</kbd>
           </button>
-          <button type="button">ALERTS <span className="notification">3</span></button>
+          <button type="button">
+            ALERTS <span className="notification">3</span>
+          </button>
           <span className="analyst">AK</span>
         </div>
       </div>
@@ -263,18 +275,24 @@ function FinanceLab() {
           <span className="cursor-block" />
         </div>
         <nav aria-label="Finance sections">
-          {(['OVERVIEW', 'EQUITIES', 'PORTFOLIO', 'MACRO / FX', 'FUNDS'] as Tab[]).map(
-            (tab, index) => (
-              <button
-                type="button"
-                key={tab}
-                className={activeTab === tab ? 'active' : ''}
-                onClick={() => setActiveTab(tab)}
-              >
-                <span>0{index + 1}</span> {tab}
-              </button>
-            ),
-          )}
+          {(
+            [
+              'OVERVIEW',
+              'EQUITIES',
+              'PORTFOLIO',
+              'MACRO / FX',
+              'FUNDS',
+            ] as Tab[]
+          ).map((tab, index) => (
+            <button
+              type="button"
+              key={tab}
+              className={activeTab === tab ? 'active' : ''}
+              onClick={() => setActiveTab(tab)}
+            >
+              <span>0{index + 1}</span> {tab}
+            </button>
+          ))}
         </nav>
       </div>
 
@@ -287,10 +305,16 @@ function FinanceLab() {
           ['INDIA 10Y', '6.944%', '-3.1bp'],
           ['GOLD', '$2,674.10', '+0.31%'],
         ].map(([name, value, change]) => (
-          <button type="button" key={name} onClick={() => setSelectedSymbol(name)}>
+          <button
+            type="button"
+            key={name}
+            onClick={() => setSelectedSymbol(name)}
+          >
             <span>{name}</span>
             <b>{value}</b>
-            <em className={change.startsWith('+') ? 'positive' : 'negative'}>{change}</em>
+            <em className={change.startsWith('+') ? 'positive' : 'negative'}>
+              {change}
+            </em>
           </button>
         ))}
       </div>
@@ -300,12 +324,24 @@ function FinanceLab() {
           <div>
             <p className="eyebrow">FINANCE DATA LAB / INDIA</p>
             <h1>Cross-Asset Intelligence</h1>
-            <p>Market, fundamental and portfolio analytics in one decision workspace.</p>
+            <p>
+              Market, fundamental and portfolio analytics in one decision
+              workspace.
+            </p>
           </div>
           <div className="session-summary">
-            <div><span>SESSION P&L</span><strong className="positive">+₹42,680</strong></div>
-            <div><span>ACTIVE RETURN</span><strong>{activeReturn}</strong></div>
-            <div><span>DATA AS OF</span><strong>26 SEP 2026</strong></div>
+            <div>
+              <span>SESSION P&L</span>
+              <strong className="positive">+₹42,680</strong>
+            </div>
+            <div>
+              <span>ACTIVE RETURN</span>
+              <strong>{activeReturn}</strong>
+            </div>
+            <div>
+              <span>DATA AS OF</span>
+              <strong>26 SEP 2026</strong>
+            </div>
           </div>
         </div>
 
@@ -336,16 +372,38 @@ function FinanceLab() {
             </div>
             <div className="chart-wrap">
               <MainChart period={period} />
-              <div className="chart-axis"><span>OCT</span><span>JAN</span><span>APR</span><span>JUL</span><span>SEP</span></div>
+              <div className="chart-axis">
+                <span>OCT</span>
+                <span>JAN</span>
+                <span>APR</span>
+                <span>JUL</span>
+                <span>SEP</span>
+              </div>
             </div>
           </Panel>
 
           <Panel title="Market Pulse" code="MKT 02">
             <div className="pulse-grid">
-              <div><span>ADV / DEC</span><strong>34 / 16</strong><small className="positive">68% breadth</small></div>
-              <div><span>FII NET</span><strong>₹1,284Cr</strong><small className="positive">net buyer</small></div>
-              <div><span>INDIA VIX</span><strong>12.84</strong><small className="negative">+2.1%</small></div>
-              <div><span>PUT / CALL</span><strong>1.18x</strong><small>neutral</small></div>
+              <div>
+                <span>ADV / DEC</span>
+                <strong>34 / 16</strong>
+                <small className="positive">68% breadth</small>
+              </div>
+              <div>
+                <span>FII NET</span>
+                <strong>₹1,284Cr</strong>
+                <small className="positive">net buyer</small>
+              </div>
+              <div>
+                <span>INDIA VIX</span>
+                <strong>12.84</strong>
+                <small className="negative">+2.1%</small>
+              </div>
+              <div>
+                <span>PUT / CALL</span>
+                <strong>1.18x</strong>
+                <small>neutral</small>
+              </div>
             </div>
             <div className="sector-list">
               {[
@@ -357,17 +415,34 @@ function FinanceLab() {
               ].map(([name, value]) => (
                 <div key={String(name)}>
                   <span>{name}</span>
-                  <div className="bar-track"><i style={{ width: `${Math.abs(Number(value)) * 32}%` }} className={Number(value) > 0 ? 'up' : 'down'} /></div>
-                  <b className={Number(value) > 0 ? 'positive' : 'negative'}>{Number(value) > 0 ? '+' : ''}{value}%</b>
+                  <div className="bar-track">
+                    <i
+                      style={{ width: `${Math.abs(Number(value)) * 32}%` }}
+                      className={Number(value) > 0 ? 'up' : 'down'}
+                    />
+                  </div>
+                  <b className={Number(value) > 0 ? 'positive' : 'negative'}>
+                    {Number(value) > 0 ? '+' : ''}
+                    {value}%
+                  </b>
                 </div>
               ))}
             </div>
           </Panel>
 
-          <Panel title="Five-Asset Watchlist" code="EQ 01" className="watchlist-panel">
+          <Panel
+            title="Five-Asset Watchlist"
+            code="EQ 01"
+            className="watchlist-panel"
+          >
             <div className="terminal-table watchlist-table">
               <div className="table-row table-head">
-                <span>TICKER / COMPANY</span><span>LAST</span><span>DAY</span><span>VOL</span><span>TREND</span><span />
+                <span>TICKER / COMPANY</span>
+                <span>LAST</span>
+                <span>DAY</span>
+                <span>VOL</span>
+                <span>TREND</span>
+                <span />
               </div>
               {watchlist.map((row) => (
                 <button
@@ -376,11 +451,19 @@ function FinanceLab() {
                   key={row.symbol}
                   onClick={() => setSelectedSymbol(row.symbol)}
                 >
-                  <span><b>{row.symbol}</b><small>{row.name}</small></span>
+                  <span>
+                    <b>{row.symbol}</b>
+                    <small>{row.name}</small>
+                  </span>
                   <span>{row.price}</span>
-                  <span className={row.change > 0 ? 'positive' : 'negative'}>{row.change > 0 ? '+' : ''}{row.change.toFixed(2)}%</span>
+                  <span className={row.change > 0 ? 'positive' : 'negative'}>
+                    {row.change > 0 ? '+' : ''}
+                    {row.change.toFixed(2)}%
+                  </span>
                   <span>{row.volume}</span>
-                  <span><Sparkline values={row.spark} positive={row.change > 0} /></span>
+                  <span>
+                    <Sparkline values={row.spark} positive={row.change > 0} />
+                  </span>
                   <span
                     className="remove-row"
                     role="button"
@@ -403,33 +486,72 @@ function FinanceLab() {
 
           <Panel title="Risk-Parity Portfolio" code="PF 01">
             <div className="portfolio-kpis">
-              <div><span>ANN. RETURN</span><strong>16.8%</strong></div>
-              <div><span>VOLATILITY</span><strong>11.2%</strong></div>
-              <div><span>SHARPE</span><strong>1.08x</strong></div>
-              <div><span>MAX DD</span><strong className="negative">-8.7%</strong></div>
+              <div>
+                <span>ANN. RETURN</span>
+                <strong>16.8%</strong>
+              </div>
+              <div>
+                <span>VOLATILITY</span>
+                <strong>11.2%</strong>
+              </div>
+              <div>
+                <span>SHARPE</span>
+                <strong>1.08x</strong>
+              </div>
+              <div>
+                <span>MAX DD</span>
+                <strong className="negative">-8.7%</strong>
+              </div>
             </div>
             <div className="allocation-bar">
               {allocation.map((asset) => (
-                <i key={asset.name} style={{ width: `${asset.weight}%`, background: asset.color }} title={`${asset.name} ${asset.weight}%`} />
+                <i
+                  key={asset.name}
+                  style={{ width: `${asset.weight}%`, background: asset.color }}
+                  title={`${asset.name} ${asset.weight}%`}
+                />
               ))}
             </div>
             <div className="allocation-legend">
               {allocation.map((asset) => (
-                <span key={asset.name}><i style={{ background: asset.color }} />{asset.name}<b>{asset.weight}%</b></span>
+                <span key={asset.name}>
+                  <i style={{ background: asset.color }} />
+                  {asset.name}
+                  <b>{asset.weight}%</b>
+                </span>
               ))}
             </div>
           </Panel>
 
-          <Panel title="Company Fundamentals" code="FA 01" className="fundamentals-panel">
+          <Panel
+            title="Company Fundamentals"
+            code="FA 01"
+            className="fundamentals-panel"
+          >
             <div className="company-line">
-              <div><span className="company-monogram">R</span><div><strong>Reliance Industries</strong><small>Oil-to-chemicals · Retail · Digital</small></div></div>
+              <div>
+                <span className="company-monogram">R</span>
+                <div>
+                  <strong>Reliance Industries</strong>
+                  <small>Oil-to-chemicals · Retail · Digital</small>
+                </div>
+              </div>
               <span className="rating">OVERWEIGHT</span>
             </div>
             <div className="terminal-table fundamentals-table">
-              <div className="table-row table-head"><span>METRIC</span><span>FY26E</span><span>1Y Δ</span><span>3Y Δ</span></div>
+              <div className="table-row table-head">
+                <span>METRIC</span>
+                <span>FY26E</span>
+                <span>1Y Δ</span>
+                <span>3Y Δ</span>
+              </div>
               {fundamentals.map((row) => (
                 <div className="table-row" key={row[0]}>
-                  {row.map((cell, index) => <span className={index > 1 ? 'positive' : ''} key={cell}>{cell}</span>)}
+                  {row.map((cell, index) => (
+                    <span className={index > 1 ? 'positive' : ''} key={cell}>
+                      {cell}
+                    </span>
+                  ))}
                 </div>
               ))}
             </div>
@@ -437,25 +559,53 @@ function FinanceLab() {
 
           <Panel title="Commodity / FX Linkage" code="MX 01">
             <div className="relationship-header">
-              <div><span>BRENT ↔ USD/INR</span><strong>ρ +0.42</strong><small>5Y daily returns</small></div>
-              <div><span>INR-ADJ. BRENT</span><strong>+8.7%</strong><small>12M total return</small></div>
+              <div>
+                <span>BRENT ↔ USD/INR</span>
+                <strong>ρ +0.42</strong>
+                <small>5Y daily returns</small>
+              </div>
+              <div>
+                <span>INR-ADJ. BRENT</span>
+                <strong>+8.7%</strong>
+                <small>12M total return</small>
+              </div>
             </div>
             <div className="regression-strip">
-              <span>Δ USDINR<sub>t</sub> =</span>
+              <span>
+                Δ USDINR<sub>t</sub> =
+              </span>
               <b>0.08</b>
               <span>+</span>
-              <b>0.14 × BRENT<sub>t−1</sub></b>
+              <b>
+                0.14 × BRENT<sub>t−1</sub>
+              </b>
               <em>R² 0.18 · p 0.03</em>
             </div>
-            <p className="insight"><span>READ</span> Higher crude prices precede modest INR weakness; the relationship strengthens during oil-supply shocks.</p>
+            <p className="insight">
+              <span>READ</span> Higher crude prices precede modest INR weakness;
+              the relationship strengthens during oil-supply shocks.
+            </p>
           </Panel>
 
           <Panel title="Flow Monitor" code="MF 01" className="fund-panel">
             <div className="terminal-table funds-table">
-              <div className="table-row table-head"><span>FUND</span><span>CLASS</span><span>12M RET.</span><span>NET FLOW ₹CR</span><span>RISK</span></div>
+              <div className="table-row table-head">
+                <span>FUND</span>
+                <span>CLASS</span>
+                <span>12M RET.</span>
+                <span>NET FLOW ₹CR</span>
+                <span>RISK</span>
+              </div>
               {funds.map((row) => (
                 <div className="table-row" key={row[0]}>
-                  {row.map((cell, index) => <span className={index === 2 || index === 3 ? 'positive' : ''} key={cell}>{cell}</span>)}
+                  {row.map((cell, index) => (
+                    <span
+                      className={index === 2 || index === 3 ? 'positive' : ''}
+                      key={cell}
+                    >
+                      {cell}
+                    </span>
+                  ))}
                 </div>
               ))}
             </div>
@@ -465,7 +615,9 @@ function FinanceLab() {
             <div className="news-list">
               {news.map((item) => (
                 <article key={item.time}>
-                  <time>{item.time}</time><span>{item.tag}</span><p>{item.headline}</p>
+                  <time>{item.time}</time>
+                  <span>{item.tag}</span>
+                  <p>{item.headline}</p>
                 </article>
               ))}
             </div>
@@ -473,18 +625,31 @@ function FinanceLab() {
         </div>
 
         <footer className="terminal-footer">
-          <span><b>ILLUSTRATIVE DATA</b> · For academic demonstration only. Not investment advice or a live data feed.</span>
+          <span>
+            <b>ILLUSTRATIVE DATA</b> · For academic demonstration only. Not
+            investment advice or a live data feed.
+          </span>
           <span>SOURCES TO REPLACE: BLOOMBERG · PROWESSDX · ACE MF</span>
         </footer>
       </div>
 
       {searchOpen && (
-        <div className="search-overlay" role="dialog" aria-modal="true" aria-label="Search securities">
-          <button className="overlay-backdrop" type="button" aria-label="Close search" onClick={() => setSearchOpen(false)} />
+        <div
+          className="search-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Search securities"
+        >
+          <button
+            className="overlay-backdrop"
+            type="button"
+            aria-label="Close search"
+            onClick={() => setSearchOpen(false)}
+          />
           <div className="search-dialog">
             <div className="search-input">
               <span>SEARCH</span>
-              <input autoFocus placeholder="Enter ticker, company, function or keyword…" />
+              <input placeholder="Enter ticker, company, function or keyword…" />
               <kbd>ESC</kbd>
             </div>
             <p>RECENT SECURITIES</p>
@@ -497,7 +662,9 @@ function FinanceLab() {
                   setSearchOpen(false);
                 }}
               >
-                <b>{row.symbol}</b><span>{row.name}</span><em>{row.price}</em>
+                <b>{row.symbol}</b>
+                <span>{row.name}</span>
+                <em>{row.price}</em>
               </button>
             ))}
           </div>
